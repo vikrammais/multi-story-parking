@@ -23,10 +23,12 @@ public enum EventName {
     }
 
     public static EventName getEventName(String value) {
-        if( value != null ) {
-            try {
-                return EventName.valueOf(value.trim().toLowerCase());
-            } catch(IllegalArgumentException ex) {
+        if (value != null) {
+            EventName[] eventNames = EventName.values();
+            for (EventName eventName : eventNames) {
+                if (eventName.getValue().equalsIgnoreCase(value.trim())) {
+                    return eventName;
+                }
             }
         }
         return null;

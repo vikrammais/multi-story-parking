@@ -1,5 +1,6 @@
 package com.Jhatkaa;
 
+import com.Jhatkaa.entity.Car;
 import com.Jhatkaa.entity.EventName;
 
 import java.io.FileInputStream;
@@ -34,6 +35,7 @@ public class Main {
 
     public static void eventInvoker() throws Exception {
         Scanner sc = new Scanner(System.in);
+        ParkingSlotManager slotManager = new ParkingSlotManager();
         String input = sc.next();
         EventName eventName = EventName.getEventName(input);
         if (eventName == null) {
@@ -42,6 +44,17 @@ public class Main {
         switch (eventName) {
             case CREATE_GARAGE:
                 int parkingSize = sc.nextInt();
+                slotManager.createGarage(parkingSize);
+                break;
+            case PARK:
+                String regNumber = sc.next();
+                String colour = sc.next();
+                Car car = new Car(regNumber, colour);
+
+
+            default:
+
+
         }
     }
 
