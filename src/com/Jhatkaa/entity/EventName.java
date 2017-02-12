@@ -10,7 +10,8 @@ public enum EventName {
     STATUS("status"),
     NUMBER_FROM_COLOUR("registration_numbers_of_cars_with_colour"),
     SLOTS_FROM_COLOUR("slots_for_cars_with_colour"),
-    SLOT_FROM_NUMBER("slot_for_registration_number"),;
+    SLOT_FROM_NUMBER("slot_for_registration_number"),
+    EXIT("exit");
 
     private final String value;
 

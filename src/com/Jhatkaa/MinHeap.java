@@ -6,35 +6,35 @@ package com.Jhatkaa;
 public class MinHeap {
     private int[] Heap;
     private int maxsize;
-    private int size;
+    private int pointer;
 
     public MinHeap(int max) {
         maxsize = max;
         Heap = new int[maxsize];
-        size = 0;
+        pointer = 0;
     }
 
-    private int getRoot() {
-        if (size == 0) {
+    public int getRoot() {
+        if (pointer == 0) {
             return -1;
         }
         return Heap[0];
     }
 
     private int leftchild(int pos) {
-        return 2 * pos;
-    }
-
-    private int rightchild(int pos) {
         return 2 * pos + 1;
     }
 
+    private int rightchild(int pos) {
+        return 2 * (pos + 1);
+    }
+
     private int getParent(int pos) {
-        return (pos) / 2;
+        return (pos-1) / 2;
     }
 
     private boolean isleaf(int pos) {
-        return ((pos > size / 2) && (pos <= size));
+        return ((pos >= pointer / 2) && (pos < pointer));
     }
 
     private void swap(int pos1, int pos2) {
@@ -46,32 +46,33 @@ public class MinHeap {
     }
 
     public void insert(int elem) {
-        Heap[size] = elem;
-        int current = size;
+        Heap[pointer] = elem;
+        int current = pointer;
         int parent = getParent(current);
         while (current > 0 && Heap[current] < Heap[parent]) {
             swap(current, parent);
-            current = getParent(current);
+            current = parent;
+            parent = getParent(current);
         }
-        size++;
+        pointer++;
     }
 
     public int removemin() {
-        size--;
-        int minElement = Heap[size];
-        swap(0, size);
-        if (size > 0)
+        int minElement = getRoot();
+        pointer--;
+        swap(0, pointer);
+        if (pointer > 1)
             pushdown(0);
         return minElement;
     }
 
     private void pushdown(int position) {
         int smallestchild;
-        while (!isleaf(position)) {
+        while (position < pointer && !isleaf(position)) {
             smallestchild = leftchild(position);
-            if ((smallestchild < size) && (Heap[smallestchild] > Heap[smallestchild + 1]))
+            if ((smallestchild < pointer -1) && (Heap[smallestchild] > Heap[smallestchild + 1]))
                 smallestchild = smallestchild + 1;
-            if (Heap[position] <= Heap[smallestchild]) return;
+            if (smallestchild < pointer && Heap[position] <= Heap[smallestchild]) return;
             swap(position, smallestchild);
             position = smallestchild;
         }

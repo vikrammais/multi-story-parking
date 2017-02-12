@@ -12,6 +12,7 @@ import java.util.*;
 public class Main {
 
     private static final String INVALID_INPUT = "Please check the input provided";
+    private static final String SOMETHING_WENT_WRONG = "Oops...Garage Under Maintenance";
 
     public static void main(String[] args) {
         try {
@@ -36,26 +37,40 @@ public class Main {
     public static void eventInvoker() throws Exception {
         Scanner sc = new Scanner(System.in);
         ParkingSlotManager slotManager = new ParkingSlotManager();
-        String input = sc.next();
-        EventName eventName = EventName.getEventName(input);
-        if (eventName == null) {
-            throw new Exception(INVALID_INPUT);
+        boolean eventListener = true;
+        while (eventListener) {
+            String input = sc.next();
+            EventName eventName = EventName.getEventName(input);
+            if(eventName == null) {
+                System.out.println(INVALID_INPUT);
+                continue;
+            }
+            try {
+                switch (eventName) {
+                    case CREATE_GARAGE:
+                        int parkingSize = sc.nextInt();
+                        slotManager.createGarage(parkingSize);
+                        break;
+                    case PARK:
+                        String regNumber = sc.next();
+                        String colour = sc.next();
+                        Car car = new Car(regNumber, colour);
+                        slotManager.parkCar(car);
+                        break;
+
+                    case EXIT:
+                        eventListener = false;
+                        break;
+
+                    default:
+                        System.out.println(INVALID_INPUT);
+                }
+            } catch (Exception e) {
+                System.out.println(SOMETHING_WENT_WRONG);
+            }
+
         }
-        switch (eventName) {
-            case CREATE_GARAGE:
-                int parkingSize = sc.nextInt();
-                slotManager.createGarage(parkingSize);
-                break;
-            case PARK:
-                String regNumber = sc.next();
-                String colour = sc.next();
-                Car car = new Car(regNumber, colour);
 
-
-            default:
-
-
-        }
     }
 
 }
