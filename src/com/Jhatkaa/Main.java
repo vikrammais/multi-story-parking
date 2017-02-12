@@ -57,7 +57,10 @@ public class Main {
                         Car car = new Car(regNumber, colour);
                         slotManager.parkCar(car);
                         break;
-
+                    case LEAVE:
+                        int slotNumber = sc.nextInt();
+                        slotManager.leaveCar(slotNumber);
+                        break;
                     case EXIT:
                         eventListener = false;
                         break;
