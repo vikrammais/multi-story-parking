@@ -41,7 +41,9 @@ public class Main {
         while (eventListener) {
             String input = sc.next();
             EventName eventName = EventName.getEventName(input);
-            if(eventName == null) {
+            String colour;
+            String regNumber;
+            if (eventName == null) {
                 System.out.println(INVALID_INPUT);
                 continue;
             }
@@ -52,8 +54,8 @@ public class Main {
                         slotManager.createGarage(parkingSize);
                         break;
                     case PARK:
-                        String regNumber = sc.next();
-                        String colour = sc.next();
+                        regNumber = sc.next();
+                        colour = sc.next();
                         Car car = new Car(regNumber, colour);
                         slotManager.parkCar(car);
                         break;
@@ -61,19 +63,30 @@ public class Main {
                         int slotNumber = sc.nextInt();
                         slotManager.leaveCar(slotNumber);
                         break;
+                    case NUMBER_FROM_COLOUR:
+                        colour = sc.next();
+                        slotManager.regNumberFromColour(colour);
+                        break;
+                    case SLOTS_FROM_COLOUR:
+                        colour = sc.next();
+                        slotManager.slotsFromColour(colour);
+                        break;
+                    case SLOT_FROM_NUMBER:
+                        regNumber = sc.next();
+                        slotManager.slotFromRegNumber(regNumber);
+                        break;
+                    case STATUS:
+                        slotManager.status();
+                        break;
                     case EXIT:
                         eventListener = false;
                         break;
-
                     default:
                         System.out.println(INVALID_INPUT);
                 }
             } catch (Exception e) {
                 System.out.println(SOMETHING_WENT_WRONG);
             }
-
         }
-
     }
-
 }
