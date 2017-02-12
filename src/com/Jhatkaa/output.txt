@@ -1,0 +1,20 @@
+Created a parking garage with 6 slots
+Park in slot number: 1
+Park in slot number: 2
+Park in slot number: 3
+Park in slot number: 4
+Park in slot number: 5
+Park in slot number: 6
+Slot number 4 is free
+Slot   Registration         Colour    
+1      KA-01-KK-1234        WHITE     
+2      KA-01-KK-9999        WHITE     
+3      KA-01-DD-0001        BLACK     
+5      KA-01-KK-2701        BLUE      
+6      KA-01-KK-3141        BLACK     
+Park in slot number: 4
+Sorry, parking garage is full
+KA-01-KK-1234, KA-01-KK-9999, KA-01-Q-333
+1, 2, 4
+6
+Not found

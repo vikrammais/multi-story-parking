@@ -22,10 +22,10 @@ public class Main {
                 } else {
                     System.setIn(new FileInputStream(args[0]));
                     System.setOut(new PrintStream(new FileOutputStream(args[2])));
-                    eventInvoker();
+                    eventInvoker(false);
                 }
             } else {
-                eventInvoker();
+                eventInvoker(true);
             }
         } catch (Exception e) {
             System.out.println(INVALID_INPUT);
@@ -34,11 +34,11 @@ public class Main {
     }
 
 
-    public static void eventInvoker() throws Exception {
+    public static void eventInvoker(boolean wait) throws Exception {
         Scanner sc = new Scanner(System.in);
         ParkingSlotManager slotManager = new ParkingSlotManager();
         boolean eventListener = true;
-        while (eventListener) {
+        while (eventListener && (sc.hasNext() || wait)) {
             String input = sc.next();
             EventName eventName = EventName.getEventName(input);
             String colour;
@@ -55,7 +55,7 @@ public class Main {
                         break;
                     case PARK:
                         regNumber = sc.next();
-                        colour = sc.next();
+                        colour = sc.next().toUpperCase();
                         Car car = new Car(regNumber, colour);
                         slotManager.parkCar(car);
                         break;
@@ -64,11 +64,11 @@ public class Main {
                         slotManager.leaveCar(slotNumber);
                         break;
                     case NUMBER_FROM_COLOUR:
-                        colour = sc.next();
+                        colour = sc.next().toUpperCase();
                         slotManager.regNumberFromColour(colour);
                         break;
                     case SLOTS_FROM_COLOUR:
-                        colour = sc.next();
+                        colour = sc.next().toUpperCase();
                         slotManager.slotsFromColour(colour);
                         break;
                     case SLOT_FROM_NUMBER:
