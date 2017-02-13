@@ -1,4 +1,4 @@
-package com.Jhatkaa.entity;
+package main.java.com.Jhatkaa.entity;
 
 /**
  * Created by Vikram Aditya on 2/12/2017.

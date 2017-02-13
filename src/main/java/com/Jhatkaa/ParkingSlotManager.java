@@ -1,6 +1,6 @@
-package com.Jhatkaa;
+package main.java.com.Jhatkaa;
 
-import com.Jhatkaa.entity.Car;
+import main.java.com.Jhatkaa.entity.Car;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,21 +11,21 @@ import java.util.StringJoiner;
  */
 public class ParkingSlotManager {
 
-    private MinHeap availableSlots;
-    private Map<String, Integer> regNumberToSlot;
-    private Map<String, Map<Integer, String>> colourToCar;
-    private Map<Integer, Car> slotToCar;
+    public MinHeap availableSlots;
+    public Map<String, Integer> regNumberToSlot;
+    public Map<String, Map<Integer, String>> colourToCar;
+    public Map<Integer, Car> slotToCar;
 
-    private String CREATED_GARAGE = "Created a parking garage with %d slots%n";
-    private String GARAGE_FULL = "Sorry, parking garage is full";
-    private String CAR_PARKED = "Park in slot number: %d%n";
-    private String CAR_LEFT = "Slot number %d is free%n";
-    private String NOT_FOUND = "Not found";
+    private static final String CREATED_GARAGE = "Created a parking garage with %d slots%n";
+    private static final String GARAGE_FULL = "Sorry, parking garage is full";
+    private static final String CAR_PARKED = "Park in slot number: %d%n";
+    private static final String CAR_LEFT = "Slot number %d is free%n";
+    private static final String NOT_FOUND = "Not found";
 
-    private String GARAGE_EMPTY = "Sorry, parking garage is empty";
-    private String INVALID_INPUT = "Please check the input provided";
-    private String DELIMITER = ", ";
-    private String STATUS_FORMATTER = "%-6s %-20s %-10s%n";
+    private static final String GARAGE_EMPTY = "Sorry, parking garage is empty";
+    private static final String INVALID_INPUT = "Please check the input provided";
+    private static final String DELIMITER = ", ";
+    private static final String STATUS_FORMATTER = "%-6s %-20s %-10s%n";
 
     public void createGarage(int parkingSize) {
         availableSlots = new MinHeap(parkingSize);

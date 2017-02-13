@@ -1,4 +1,4 @@
-package com.Jhatkaa;
+package main.java.com.Jhatkaa;
 
 /**
  * Created by Vikram Aditya on 2/12/2017.
